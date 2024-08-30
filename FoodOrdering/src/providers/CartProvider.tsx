@@ -6,12 +6,14 @@ export const CartContext = createContext<CartType>({
   items: [],
   addItem: () => {},
   updateQuantity: () => {},
+  total: 0
 });
 
 type CartType = {
   items: CartItem[];
   addItem: (proudct: Product, size: CartItem["size"]) => void;
   updateQuantity: (itemId: string, amount: -1 | 1) => void;
+  total:Number
 };
 
 const CartProvider = ({ children }: PropsWithChildren) => {
