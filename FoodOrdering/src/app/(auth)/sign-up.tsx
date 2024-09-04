@@ -4,13 +4,13 @@ import Button from '../../components/Button';
 import Colors from '../../constants/Colors';
 import { Link, Stack } from 'expo-router';
 
-const SignInScreen = () => {
+const SignUpScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   return (
     <View style={styles.container}>
-      <Stack.Screen options={{ title: 'Sign in' }} />
+      <Stack.Screen options={{ title: 'Sign up' }} />
 
       <Text style={styles.label}>Email</Text>
       <TextInput
@@ -29,9 +29,9 @@ const SignInScreen = () => {
         secureTextEntry
       />
 
-      <Button text="Sign in" />
-      <Link href="/sign-up" style={styles.textButton}>
-        Create an account
+      <Button text="Create account" />
+      <Link href="/sign-in" style={styles.textButton}>
+        Sign in
       </Link>
     </View>
   );
@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignInScreen;
+export default SignUpScreen;
