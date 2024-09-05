@@ -1,9 +1,4 @@
-import {
-  StyleSheet,
-  View,
-  Text,
-  FlatList,
-} from "react-native";
+import { StyleSheet, View, Text, FlatList } from "react-native";
 import React from "react";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import orders from "@/assets/data/orders";
@@ -22,11 +17,11 @@ const OrderDetailsScreen = () => {
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: `Order #${order.id}` }} />
-      <OrderListItem order={order}></OrderListItem>
       <FlatList
         data={order.order_items}
         renderItem={({ item }) => <OrderItemListItem items={item} />}
         contentContainerStyle={{ padding: 10, gap: 10 }}
+        ListHeaderComponent={() => <OrderListItem order={order} />}
       />
     </View>
   );
