@@ -3,6 +3,7 @@ import { Order, OrderItem } from '../types';
 import { Link, useSegments } from 'expo-router';
 import products from '@/assets/data/products';
 import { defaultPizzaImage } from './ProductListItem';
+import Colors from '../constants/Colors';
 type OrderItemListItemProps = {
     items:OrderItem,
 }
@@ -12,12 +13,15 @@ const OrderItemListItem = ({items: orderItem}:OrderItemListItemProps) => {
   const product = products.find(p => p.id = orderItem.product_id);
   return (
     <View style={styles.container}>
-      <Image style={styles.image} uri={product?.image ||defaultPizzaImage}/>
+      <Image 
+        source={{ uri: product?.image || defaultPizzaImage }}
+        style={styles.image}
+        resizeMode="contain"/>
       <View>
-        <Text style={styles.name}>{product.name}</Text>
-        <View>
-          <Text style={styles.price}>{product?.price}</Text>
-          <Text style={styles.size}>{orderItem.size}</Text>
+        <Text style={styles.name}>{product?.name}</Text>
+        <View style={styles.name_and_price}>
+          <Text style={styles.price}>${product?.price}</Text>
+          <Text style={styles.size}>Size:{orderItem.size}</Text>
         </View>
       </View>
       <Text style={styles.quantity}>{orderItem.quantity}</Text>
@@ -38,8 +42,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: "100%",
+    width: "25%",
     aspectRatio: 1,
+  },
+  name_and_price: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
   name: {
     fontSize: 20,
@@ -48,12 +57,15 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 18,
     fontWeight: "bold",
+    color: Colors.light.tint,
   },
   size: {
     marginVertical: 10,
+    paddingLeft:5,
   },
   quantity: {
-    fontSize:20
+    fontSize:20,
+    fontWeight: "bold",
   }
 }
 );
